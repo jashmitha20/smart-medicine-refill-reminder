@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: smart-medicine-refill-system
+  
+  # Database configuration
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  
+  # JPA configuration
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  
+  # H2 Console (for development)
+  h2:
+    console:
+      enabled: true
+  
+  # Mail configuration (configure these with your email provider)
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME:your-email@gmail.com}
+    password: ${EMAIL_PASSWORD:your-app-password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:mySecretKey123456789mySecretKey123456789}
+  expiration: 86400000 # 24 hours in milliseconds
+
+# Server configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Logging
+logging:
+  level:
+    com.medicinerefill.smartmedicine: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate: DEBUG
